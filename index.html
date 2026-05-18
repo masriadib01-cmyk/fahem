@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>فاهم | تعلّم اللغات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#4f46e5;
+  --primary2:#6366f1;
+  --primary3:#818cf8;
+  --primary-light:#eef2ff;
+  --accent:#f59e0b;
+  --accent2:#fbbf24;
+  --accent-light:#fffbeb;
+  --dark:#0f0e17;
+  --dark2:#1e1b4b;
+  --text:#1e1b4b;
+  --text2:#4b5563;
+  --text3:#9ca3af;
+  --bg:#ffffff;
+  --bg2:#f8f9ff;
+  --bg3:#f1f5f9;
+  --border:#e5e7eb;
+  --border2:rgba(79,70,229,0.2);
+  --shadow:0 2px 12px rgba(79,70,229,0.08);
+  --shadow-md:0 6px 28px rgba(79,70,229,0.13);
+  --shadow-lg:0 12px 48px rgba(79,70,229,0.18);
+  --font:'Cairo',sans-serif;
+  --font-en:'Poppins',sans-serif;
+  --r:14px;--r-lg:22px;--r-xl:30px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.7;overflow-x:hidden}
+
+/* ═══════════ LOGO ═══════════ */
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+
+.logo-icon{
+  position:relative;width:46px;height:46px;flex-shrink:0;
+}
+.logo-icon svg{width:46px;height:46px}
+
+.logo-text-wrap{}
+.logo-name-ar{
+  font-size:21px;font-weight:900;
+  background:linear-gradient(135deg,var(--primary),var(--primary3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  line-height:1.1;letter-spacing:-.3px;
+}
+.logo-name-en{
+  font-size:10.5px;font-weight:600;color:var(--text3);
+  font-family:var(--font-en);letter-spacing:.12em;text-transform:uppercase;
+}
+
+/* ═══════════ NAVBAR ═══════════ */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,0.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 5%;
+}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-a{padding:8px 15px;border-radius:var(--r);color:var(--text2);font-size:14.5px;font-weight:600;text-decoration:none;transition:all .18s;white-space:nowrap}
+.nav-a:hover{color:var(--primary);background:var(--primary-light)}
+.nav-btns{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.btn-in{padding:9px 20px;border-radius:var(--r);border:2px solid var(--border);background:white;color:var(--text);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all .18s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-in:hover{border-color:var(--primary);color:var(--primary)}
+.btn-up{padding:9px 22px;border-radius:var(--r);border:none;background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;box-shadow:0 4px 16px rgba(79,70,229,0.3)}
+.btn-up:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(79,70,229,0.38)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:24px;height:2.5px;background:var(--text2);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:white;z-index:190;padding:20px 5%;flex-direction:column;gap:6px;overflow-y:auto;direction:rtl}
+.mobile-menu.open{display:flex}
+.mob-a{padding:14px 16px;border-radius:var(--r);color:var(--text);font-size:16px;font-weight:700;text-decoration:none;border-bottom:1px solid var(--border);display:block}
+.mob-a:hover{background:var(--primary-light);color:var(--primary)}
+.mob-btns{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+
+/* ═══════════ HERO ═══════════ */
+.hero{
+  min-height:92vh;display:flex;align-items:center;
+  padding:90px 5% 70px;
+  background:linear-gradient(160deg,#fafbff 0%,#eef2ff 55%,#f0fdf4 100%);
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+/* decorative circles */
+.hero-deco{position:absolute;pointer-events:none}
+.deco1{width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.12),transparent 70%);top:-120px;right:-100px}
+.deco2{width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.1),transparent 70%);bottom:-80px;left:-100px}
+.deco3{width:200px;height:200px;border-radius:50%;border:2px dashed rgba(79,70,229,.12);top:18%;left:6%}
+.deco4{width:120px;height:120px;border-radius:50%;border:2px dashed rgba(245,158,11,.18);bottom:22%;right:8%}
+
+/* floating flags */
+.floating-flags{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ff{position:absolute;font-size:28px;animation:floatFlag 6s ease-in-out infinite;opacity:.18}
+.ff:nth-child(1){top:12%;right:10%;animation-delay:0s}
+.ff:nth-child(2){top:20%;left:8%;animation-delay:1s}
+.ff:nth-child(3){bottom:25%;right:12%;animation-delay:2s}
+.ff:nth-child(4){bottom:15%;left:10%;animation-delay:3s}
+.ff:nth-child(5){top:55%;right:6%;animation-delay:1.5s}
+.ff:nth-child(6){top:40%;left:5%;animation-delay:2.5s}
+@keyframes floatFlag{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(5deg)}}
+
+.hero-inner{max-width:820px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:white;border:1.5px solid var(--border2);
+  padding:7px 18px;border-radius:30px;
+  font-size:13px;color:var(--primary);font-weight:700;
+  margin-bottom:26px;box-shadow:0 2px 14px rgba(79,70,229,.1);
+}
+.hero h1{
+  font-size:clamp(32px,5.5vw,58px);font-weight:900;
+  line-height:1.2;color:var(--text);margin-bottom:18px;
+  letter-spacing:-.5px;
+}
+.hero h1 .hl{
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{font-size:17px;color:var(--text2);max-width:580px;margin:0 auto 36px;line-height:1.8}
+.hero-ctas{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.cta-primary{
+  padding:15px 36px;border-radius:var(--r);
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:white;font-family:var(--font);font-size:16px;font-weight:800;
+  text-decoration:none;box-shadow:0 6px 28px rgba(79,70,229,.35);
+  transition:all .22s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+}
+.cta-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(79,70,229,.4)}
+.cta-ghost{
+  padding:15px 30px;border-radius:var(--r);border:2px solid var(--border);
+  background:white;color:var(--text);font-family:var(--font);
+  font-size:16px;font-weight:700;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;
+}
+.cta-ghost:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
+
+.hero-stats{
+  display:flex;align-items:center;justify-content:center;gap:48px;
+  margin-top:60px;padding-top:44px;border-top:1px solid rgba(79,70,229,.12);
+  flex-wrap:wrap;
+}
+.stat{text-align:center}
+.stat-num{font-size:34px;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--primary3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stat-lbl{font-size:13px;color:var(--text3);font-weight:500;margin-top:5px}
+
+/* ═══════════ SECTION UTILS ═══════════ */
+.section{padding:80px 5%}
+.si{max-width:1200px;margin:0 auto}
+.sh{text-align:center;margin-bottom:52px}
+.stag{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary);font-size:12px;font-weight:700;letter-spacing:.08em;padding:5px 16px;border-radius:30px;margin-bottom:14px;text-transform:uppercase}
+.stitle{font-size:clamp(24px,4vw,38px);font-weight:900;color:var(--text);margin-bottom:10px;letter-spacing:-.3px}
+.ssub{font-size:15.5px;color:var(--text2);max-width:520px;margin:0 auto}
+
+/* ═══════════ LANGUAGES ═══════════ */
+.langs-bg{background:var(--bg2)}
+.langs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+.lang-card{
+  background:white;border-radius:var(--r-lg);
+  border:2px solid var(--border);padding:34px 28px;
+  cursor:pointer;transition:all .28s;text-decoration:none;
+  display:flex;flex-direction:column;align-items:flex-start;gap:0;
+  position:relative;overflow:hidden;
+}
+.lang-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
+  border-radius:0 0 var(--r-lg) var(--r-lg);
+  transition:height .28s;
+}
+.lang-card:hover{transform:translateY(-6px);border-color:transparent}
+.lang-card:hover::after{height:100%;opacity:.06;border-radius:var(--r-lg)}
+
+/* Individual lang colors */
+.lc-ar{--lc:#16a34a;--lc2:#4ade80;--lc-bg:#f0fdf4}
+.lc-ar::after{background:linear-gradient(135deg,#16a34a,#4ade80)}
+.lc-ar:hover{box-shadow:0 16px 48px rgba(22,163,74,.18)}
+.lc-ar .lbadge{background:#dcfce7;color:#16a34a}
+.lc-ar .lbtn{background:#16a34a}
+
+.lc-fr{--lc:#2563eb;--lc2:#60a5fa;--lc-bg:#eff6ff}
+.lc-fr::after{background:linear-gradient(135deg,#2563eb,#60a5fa)}
+.lc-fr:hover{box-shadow:0 16px 48px rgba(37,99,235,.18)}
+.lc-fr .lbadge{background:#dbeafe;color:#2563eb}
+.lc-fr .lbtn{background:#2563eb}
+
+.lc-en{--lc:#dc2626;--lc2:#f87171;--lc-bg:#fef2f2}
+.lc-en::after{background:linear-gradient(135deg,#dc2626,#f87171)}
+.lc-en:hover{box-shadow:0 16px 48px rgba(220,38,38,.18)}
+.lc-en .lbadge{background:#fee2e2;color:#dc2626}
+.lc-en .lbtn{background:#dc2626}
+
+.lc-it{--lc:#d97706;--lc2:#fbbf24;--lc-bg:#fffbeb}
+.lc-it::after{background:linear-gradient(135deg,#d97706,#fbbf24)}
+.lc-it:hover{box-shadow:0 16px 48px rgba(217,119,6,.18)}
+.lc-it .lbadge{background:#fef3c7;color:#d97706}
+.lc-it .lbtn{background:#d97706}
+
+.lc-es{--lc:#b45309;--lc2:#f59e0b;--lc-bg:#fff7ed}
+.lc-es::after{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.lc-es:hover{box-shadow:0 16px 48px rgba(180,83,9,.18)}
+.lc-es .lbadge{background:#ffedd5;color:#b45309}
+.lc-es .lbtn{background:#b45309}
+
+.lc-de{--lc:#374151;--lc2:#6b7280;--lc-bg:#f9fafb}
+.lc-de::after{background:linear-gradient(135deg,#374151,#6b7280)}
+.lc-de:hover{box-shadow:0 16px 48px rgba(55,65,81,.18)}
+.lc-de .lbadge{background:#f3f4f6;color:#374151}
+.lc-de .lbtn{background:#374151}
+
+.lang-top{display:flex;align-items:flex-start;justify-content:space-between;width:100%;margin-bottom:18px}
+.lang-flag{font-size:48px;line-height:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+.lbadge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap;font-family:var(--font-en)}
+
+.lang-name-ar{font-size:22px;font-weight:900;color:var(--text);margin-bottom:2px}
+.lang-name-en{font-size:13px;font-weight:600;color:var(--text3);font-family:var(--font-en);letter-spacing:.04em;margin-bottom:12px}
+.lang-desc{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:20px;flex:1}
+
+.lang-meta{display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:18px}
+.lang-levels{display:flex;gap:6px}
+.lvdot{width:8px;height:8px;border-radius:50%;background:var(--border)}
+.lvdot.active{background:var(--lc,var(--primary))}
+.lang-count{font-size:12px;color:var(--text3);font-weight:600}
+
+.lbtn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 20px;border-radius:var(--r);
+  color:white;font-family:var(--font);font-size:14px;font-weight:700;
+  text-decoration:none;transition:all .2s;width:100%;justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.15);
+}
+.lbtn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.2)}
+
+/* ═══════════ FEATURES ═══════════ */
+.feats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.fc{
+  background:var(--bg2);border-radius:var(--r-lg);padding:30px;
+  border:1.5px solid var(--border);transition:all .22s;
+}
+.fc:hover{background:white;box-shadow:var(--shadow-md);border-color:var(--border2);transform:translateY(-3px)}
+.fc-icon{
+  width:54px;height:54px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;margin-bottom:18px;
+}
+.fc-icon.v1{background:linear-gradient(135deg,#eef2ff,#ddd6fe)}
+.fc-icon.v2{background:linear-gradient(135deg,#fff7ed,#fed7aa)}
+.fc-icon.v3{background:linear-gradient(135deg,#f0fdf4,#bbf7d0)}
+.fc-icon.v4{background:linear-gradient(135deg,#fdf4ff,#f5d0fe)}
+.fc-icon.v5{background:linear-gradient(135deg,#eff6ff,#bfdbfe)}
+.fc-icon.v6{background:linear-gradient(135deg,#fff1f2,#fecdd3)}
+.fc-title{font-size:17px;font-weight:800;color:var(--text);margin-bottom:8px}
+.fc-desc{font-size:14px;color:var(--text2);line-height:1.72}
+
+/* ═══════════ HOW IT WORKS ═══════════ */
+.hiw-bg{background:linear-gradient(160deg,var(--dark2) 0%,#312e81 100%);padding:80px 5%}
+.hiw-bg .stag{background:rgba(255,255,255,.1);color:rgba(255,255,255,.9)}
+.hiw-bg .stitle{color:white}
+.hiw-bg .ssub{color:rgba(255,255,255,.6)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1100px;margin:0 auto;position:relative}
+.steps::before{content:'';position:absolute;top:44px;right:12%;left:12%;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,.4),rgba(255,255,255,.15))}
+.step{text-align:center;position:relative;z-index:1}
+.step-circle{
+  width:88px;height:88px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;margin:0 auto 18px;
+  transition:all .2s;
+  box-shadow:0 0 0 8px rgba(255,255,255,.03);
+}
+.step:hover .step-circle{background:rgba(255,255,255,.12);transform:scale(1.05)}
+.step-n{font-size:12px;font-weight:700;color:var(--accent);font-family:var(--font-en);letter-spacing:.08em;margin-bottom:6px}
+.step-t{font-size:16px;font-weight:800;color:white;margin-bottom:8px}
+.step-d{font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.65}
+
+/* ═══════════ PRICING ═══════════ */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
+.pcard{
+  border-radius:var(--r-lg);padding:32px 28px;border:2px solid var(--border);
+  background:white;transition:all .22s;position:relative;
+}
+.pcard.featured{
+  border-color:var(--primary);
+  background:linear-gradient(160deg,var(--primary-light),white);
+  box-shadow:var(--shadow-lg);transform:scale(1.03);
+}
+.pcard-badge{
+  position:absolute;top:-13px;right:50%;transform:translateX(50%);
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  color:white;font-size:12px;font-weight:800;padding:4px 16px;border-radius:20px;
+  white-space:nowrap;font-family:var(--font);
+}
+.pcard-name{font-size:17px;font-weight:800;color:var(--text);margin-bottom:6px}
+.pcard-price{font-size:38px;font-weight:900;color:var(--primary);line-height:1;margin:16px 0 4px}
+.pcard-price span{font-size:16px;color:var(--text3);font-weight:500}
+.pcard-cycle{font-size:13px;color:var(--text3);margin-bottom:22px}
+.pcard-feats{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
+.pcard-feats li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text2)}
+.pcard-feats li::before{content:'✓';width:22px;height:22px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0}
+.pcard-feats li.na{color:var(--text3)}
+.pcard-feats li.na::before{content:'✕';background:var(--bg3);color:var(--text3)}
+.pbtn{
+  width:100%;padding:12px;border-radius:var(--r);
+  font-family:var(--font);font-size:15px;font-weight:800;
+  cursor:pointer;transition:all .2s;border:2px solid var(--primary);
+  background:white;color:var(--primary);
+}
+.pbtn:hover{background:var(--primary-light)}
+.pbtn.primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;border:none;box-shadow:0 4px 18px rgba(79,70,229,.3)}
+.pbtn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(79,70,229,.4)}
+
+/* ═══════════ TESTIMONIALS ═══════════ */
+.tstis{background:var(--bg2);padding:80px 5%}
+.tsti-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.tc{background:white;border-radius:var(--r-lg);padding:28px;border:1.5px solid var(--border);transition:all .2s}
+.tc:hover{box-shadow:var(--shadow-md);border-color:var(--border2);transform:translateY(-2px)}
+.tc-stars{color:var(--accent);font-size:15px;margin-bottom:14px;letter-spacing:2px}
+.tc-text{font-size:14.5px;color:var(--text2);line-height:1.78;margin-bottom:20px;font-style:italic}
+.tc-author{display:flex;align-items:center;gap:12px}
+.tc-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:2px solid var(--border)}
+.tc-name{font-size:14px;font-weight:800;color:var(--text)}
+.tc-info{font-size:12px;color:var(--text3)}
+
+/* ═══════════ CTA BANNER ═══════════ */
+.cta-sec{
+  padding:80px 5%;text-align:center;
+  background:linear-gradient(135deg,#fef9c3 0%,#fef3c7 40%,#fff7ed 100%);
+  position:relative;overflow:hidden;
+}
+.cta-sec::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f59e0b' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.cta-sec-inner{max-width:640px;margin:0 auto;position:relative;z-index:1}
+.cta-sec h2{font-size:clamp(24px,4vw,40px);font-weight:900;color:var(--text);margin-bottom:12px}
+.cta-sec p{font-size:16px;color:var(--text2);margin-bottom:32px;line-height:1.75}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{background:var(--dark);color:rgba(255,255,255,.7);padding:60px 5% 28px}
+.ft-inner{max-width:1200px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:48px;margin-bottom:52px}
+.ft-desc{font-size:14px;line-height:1.8;color:rgba(255,255,255,.45);margin:14px 0 22px}
+.ft-social{display:flex;gap:10px}
+.fsoc{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:18px;text-decoration:none;transition:all .2s}
+.fsoc:hover{background:var(--primary);transform:translateY(-2px)}
+.ft-col h4{font-size:14px;font-weight:800;color:white;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ft-col a{display:block;font-size:13.5px;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:10px;transition:color .15s}
+.ft-col a:hover{color:white}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:26px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.3);flex-wrap:wrap;gap:10px}
+.ft-langs-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.ft-lang-tag{font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.5)}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:1024px){
+  .langs-grid{grid-template-columns:repeat(2,1fr)}
+  .feats-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-btns{display:none}
+  .hamburger{display:flex}
+  .langs-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}.steps::before{display:none}
+  .pricing-grid{grid-template-columns:1fr}.pcard.featured{transform:scale(1)}
+  .tsti-grid{grid-template-columns:1fr}
+  .feats-grid{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr}
+  .ft-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:520px){
+  .langs-grid{grid-template-columns:1fr}
+  .hero-ctas{flex-direction:column;align-items:stretch}
+  .cta-primary,.cta-ghost{text-align:center;justify-content:center}
+}
+
+/* ═══════════ ANIMATIONS ═══════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:fadeUp .55s cubic-bezier(.22,1,.36,1) both}
+.hero-badge{animation-delay:.05s}
+.hero h1{animation-delay:.14s}
+.hero-sub{animation-delay:.22s}
+.hero-ctas{animation-delay:.3s}
+.hero-stats{animation-delay:.4s}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <!-- LOGO -->
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <!-- Beautiful geometric logo -->
+        <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="46" height="46" rx="13" fill="url(#logoGrad)"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4f46e5"/>
+              <stop offset="100%" stop-color="#818cf8"/>
+            </linearGradient>
+          </defs>
+          <!-- letter ف stylized -->
+          <text x="23" y="31" font-family="Cairo, Arial" font-size="22" font-weight="900" fill="white" text-anchor="middle">ف</text>
+          <!-- small accent dot -->
+          <circle cx="33" cy="13" r="4" fill="#f59e0b"/>
+        </svg>
+      </div>
+      <div class="logo-text-wrap">
+        <div class="logo-name-ar">فاهم</div>
+        <div class="logo-name-en">Fahem Languages</div>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="#languages" class="nav-a">🌍 اللغات</a>
+      <a href="#features" class="nav-a">✨ المميزات</a>
+      <a href="#pricing" class="nav-a">💳 الأسعار</a>
+      <a href="#hiw" class="nav-a">❓ كيف تعمل؟</a>
+    </div>
+
+    <div class="nav-btns">
+      <a href="#" class="btn-in">تسجيل الدخول</a>
+      <a href="#" class="btn-up">ابدأ مجاناً 🚀</a>
+    </div>
+
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mob">
+  <a href="#languages" class="mob-a" onclick="toggleMenu()">🌍 اللغات</a>
+  <a href="#features" class="mob-a" onclick="toggleMenu()">✨ المميزات</a>
+  <a href="#pricing" class="mob-a" onclick="toggleMenu()">💳 الأسعار</a>
+  <a href="#hiw" class="mob-a" onclick="toggleMenu()">❓ كيف تعمل؟</a>
+  <div class="mob-btns">
+    <a href="#" class="btn-in" style="text-align:center;padding:13px">تسجيل الدخول</a>
+    <a href="#" class="btn-up" style="text-align:center;padding:13px">ابدأ مجاناً 🚀</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="floating-flags">
+    <span class="ff">🇸🇦</span><span class="ff">🇫🇷</span>
+    <span class="ff">🇬🇧</span><span class="ff">🇮🇹</span>
+    <span class="ff">🇪🇸</span><span class="ff">🇩🇪</span>
+  </div>
+  <div class="hero-deco deco1"></div>
+  <div class="hero-deco deco2"></div>
+  <div class="hero-deco deco3"></div>
+  <div class="hero-deco deco4"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">
+      🇹🇳 &nbsp; منصة اللغات التونسية رقم 1
+    </div>
+    <h1>
+      تعلّم أي لغة<br/>
+      بطريقة <span class="hl">تونسية أصيلة</span>
+    </h1>
+    <p class="hero-sub">
+      عربية، فرنسية، إنجليزية، إيطالية، إسبانية وألمانية.<br/>
+      شروحات بالدارجة التونسية، ملخصات واضحة، وتمارين تفاعلية.
+    </p>
+    <div class="hero-ctas">
+      <a href="#languages" class="cta-primary">🚀 ابدأ تعلّم مجاناً</a>
+      <a href="#hiw" class="cta-ghost">👀 كيف يشتغل؟</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-lbl">لغات متاحة</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">+3000</div>
+        <div class="stat-lbl">طالب مسجّل</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">+500</div>
+        <div class="stat-lbl">درس وملخص</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">🆓</div>
+        <div class="stat-lbl">الأساسي مجاني</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="section langs-bg" id="languages">
+  <div class="si">
+    <div class="sh reveal">
+      <div class="stag">🌍 اللغات المتاحة</div>
+      <h2 class="stitle">اختر اللغة اللي تحب تتعلمها</h2>
+      <p class="ssub">6 لغات عالمية — شروحات بالدارجة، من الصفر لمستوى متقدم</p>
+    </div>
+    <div class="langs-grid">
+
+      <!-- ARABIC -->
+      <a href="#" class="lang-card lc-ar reveal">
+        <div class="lang-top">
+          <div class="lang-flag">🇸🇦</div>
+          <span class="lbadge">مجاني</span>
+        </div>
+        <div class="lang-name-ar">اللغة العربية</div>
+        <div class="lang-name-en">Arabic Language</div>
+        <p class="lang-desc">تعمّق في قواعد اللغة العربية الفصحى — نحو، صرف، وكتابة احترافية من الصفر.</p>
+        <div class="lang-meta">
+          <div class="lang-levels">
+            <div class="lvdot active"></div><div class="lvdot active"></div>
+            <div class="lvdot active"></div><div class="lvdot"></div><div class="lvdot"></div>
+          </div>
+          <span class="lang-count">+80 درس</span>
+        </div>
+        <span class="lbtn">ابدأ التعلم →</span>
+      </a>
+
+      <!-- FRENCH -->
+      <a href="#" class="lang-card lc-fr reveal">
+        <div class="lang-top">
+          <div class="lang-flag">🇫🇷</div>
+          <span class="lbadge">مجاني</span>
+        </div>
+        <div class="lang-name-ar">اللغة الفرنسية</div>
+        <div class="lang-name-en">Français</div>
+        <p class="lang-desc">من A1 لـ B2 — قواعد، مفردات، ومحادثة بشروحات بالدارجة التونسية.</p>
+        <div class="lang-meta">
+          <div class="lang-levels">
+            <div class="lvdot active"></div><div class="lvdot active"></div>
+            <div class="lvdot active"></div><div class="lvdot active"></div><div class="lvdot"></div>
+          </div>
+          <span class="lang-count">+120 درس</span>
+        </div>
+        <span class="lbtn">ابدأ التعلم →</span>
+      </a>
+
+      <!-- ENGLISH -->
+      <a href="#" class="lang-card lc-en reveal">
+        <div class="lang-top">
+          <div class="lang-flag">🇬🇧</div>
+          <span class="lbadge">مجاني جزئياً</span>
+        </div>
+        <div class="lang-name-ar">اللغة الإنجليزية</div>
+        <div class="lang-name-en">English</div>
+        <p class="lang-desc">تعلم الإنجليزية بسهولة — Grammar, Vocabulary, Speaking & Writing من البداية.</p>
+        <div class="lang-meta">
+          <div class="lang-levels">
+            <div class="lvdot active"></div><div class="lvdot active"></div>
+            <div class="lvdot active"></div><div class="lvdot active"></div><div class="lvdot active"></div>
+          </div>
+          <span class="lang-count">+150 درس</span>
+        </div>
+        <span class="lbtn">ابدأ التعلم →</span>
+      </a>
+
+      <!-- ITALIAN -->
+      <a href="#" class="lang-card lc-it reveal">
+        <div class="lang-top">
+          <div class="lang-flag">🇮🇹</div>
+          <span class="lbadge">مدفوع</span>
+        </div>
+        <div class="lang-name-ar">اللغة الإيطالية</div>
+        <div class="lang-name-en">Italiano</div>
+        <p class="lang-desc">اكتشف جمال الإيطالية — من التحية لأول محادثة كاملة، خطوة بخطوة.</p>
+        <div class="lang-meta">
+          <div class="lang-levels">
+            <div class="lvdot active"></div><div class="lvdot active"></div>
+            <div class="lvdot"></div><div class="lvdot"></div><div class="lvdot"></div>
+          </div>
+          <span class="lang-count">+60 درس</span>
+        </div>
+        <span class="lbtn">ابدأ التعلم →</span>
+      </a>
+
+      <!-- SPANISH -->
+      <a href="#" class="lang-card lc-es reveal">
+        <div class="lang-top">
+          <div class="lang-flag">🇪🇸</div>
+          <span class="lbadge">مدفوع</span>
+        </div>
+        <div class="lang-name-ar">اللغة الإسبانية</div>
+        <div class="lang-name-en">Español</div>
+        <p class="lang-desc">¡Hola! تعلم الإسبانية أسرع مما تتخيل — لغة المستقبل والفرص المهنية.</p>
+        <div class="lang-meta">
+          <div class="lang-levels">
+            <div class="lvdot active"></div><div class="lvdot active"></div>
+            <div class="lvdot"></div><div class="lvdot"></div><div class="lvdot"></div>
+          </div>
+          <span class="lang-count">+55 درس</span>
+        </div>
+        <span class="lbtn">ابدأ التعلم →</span>
+      </a>
+
+      <!-- GERMAN -->
+      <a href="#" class="lang-card lc-de reveal">
+        <div class="lang-top">
+          <div class="lang-flag">🇩🇪</div>
+          <span class="lbadge">مدفوع</span>
+        </div>
+        <div class="lang-name-ar">اللغة الألمانية</div>
+        <div class="lang-name-en">Deutsch</div>
+        <p class="lang-desc">Guten Tag! الألمانية لغة العلم والتقنية — افتح أبواباً جديدة في كاريرتك.</p>
+        <div class="lang-meta">
+          <div class="lang-levels">
+            <div class="lvdot active"></div><div class="lvdot active"></div>
+            <div class="lvdot"></div><div class="lvdot"></div><div class="lvdot"></div>
+          </div>
+          <span class="lang-count">+50 درس</span>
+        </div>
+        <span class="lbtn">ابدأ التعلم →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="si">
+    <div class="sh reveal">
+      <div class="stag">✨ لماذا فاهم؟</div>
+      <h2 class="stitle">كل ما تحتاجه لتتعلم لغة</h2>
+      <p class="ssub">منصة صُممت باش تفهم — مش باش تحفظ</p>
+    </div>
+    <div class="feats-grid">
+      <div class="fc reveal">
+        <div class="fc-icon v1">🎙️</div>
+        <div class="fc-title">شروحات بالدارجة</div>
+        <p class="fc-desc">كل الدروس مشروحة بالدارجة التونسية — تفهم بسرعة بدون ما تكون عارف اللغة من قبل.</p>
+      </div>
+      <div class="fc reveal">
+        <div class="fc-icon v2">📝</div>
+        <div class="fc-title">ملخصات جاهزة للتحميل</div>
+        <p class="fc-desc">كل درس فيه ملخص PDF جاهز — تطبعه أو تحفظه في هاتفك وتراجع وقتاش ما تحب.</p>
+      </div>
+      <div class="fc reveal">
+        <div class="fc-icon v3">🎮</div>
+        <div class="fc-title">تمارين تفاعلية</div>
+        <p class="fc-desc">تمارين بعد كل درس تثبّت المعلومة — اختبارات، ملء الفراغات، ومطابقة.</p>
+      </div>
+      <div class="fc reveal">
+        <div class="fc-icon v4">💬</div>
+        <div class="fc-title">مجتمع الطلاب</div>
+        <p class="fc-desc">تكلم مع طلاب تونسيين آخرين، اسأل أسئلة وشارك تقدمك في تعلم اللغات.</p>
+      </div>
+      <div class="fc reveal">
+        <div class="fc-icon v5">📱</div>
+        <div class="fc-title">يشتغل على الموبايل</div>
+        <p class="fc-desc">تعلم في الطريق، في الحافلة، أو في أي مكان — الموقع محسّن بالكامل للهاتف.</p>
+      </div>
+      <div class="fc reveal">
+        <div class="fc-icon v6">✅</div>
+        <div class="fc-title">محتوى مراجَع</div>
+        <p class="fc-desc">كل محتوى يمر على مراجعة قبل النشر — جودة مضمونة بدون معلومات غلط.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="hiw-bg" id="hiw">
+  <div class="si">
+    <div class="sh reveal">
+      <div class="stag">❓ طريقة الاستخدام</div>
+      <h2 class="stitle" style="color:white">4 خطوات وتبدأ تتكلم</h2>
+      <p class="ssub">بسيطة، واضحة، وسريعة</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-circle">🎯</div>
+        <div class="step-n">STEP 01</div>
+        <div class="step-t">سجّل حسابك</div>
+        <p class="step-d">إنشاء حساب مجاني في أقل من دقيقة</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">🌍</div>
+        <div class="step-n">STEP 02</div>
+        <div class="step-t">اختر اللغة</div>
+        <p class="step-d">حدد اللغة اللي تحب تتعلمها ومستواك الحالي</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">📚</div>
+        <div class="step-n">STEP 03</div>
+        <div class="step-t">تعلّم كل يوم</div>
+        <p class="step-d">شوف الدروس، حل التمارين، وتطور كل يوم</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">🏆</div>
+        <div class="step-n">STEP 04</div>
+        <div class="step-t">احصل على شهادة</div>
+        <p class="step-d">أكمل المستوى واحصل على شهادة إتمام رسمية</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="si">
+    <div class="sh reveal">
+      <div class="stag">💳 الأسعار</div>
+      <h2 class="stitle">بسيط وواضح</h2>
+      <p class="ssub">ابدأ مجاناً، وارتقِ عند ما تكون جاهزاً</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pcard reveal">
+        <div class="pcard-name">🆓 مجاني</div>
+        <div class="pcard-price">0 <span>DT</span></div>
+        <div class="pcard-cycle">للأبد مجاني</div>
+        <ul class="pcard-feats">
+          <li>وصول للغتين (عربي + فرنسي)</li>
+          <li>أول 20 درس لكل لغة</li>
+          <li>ملخصات PDF أساسية</li>
+          <li>مجتمع الطلاب</li>
+          <li class="na">اللغات المتقدمة</li>
+          <li class="na">شهادة إتمام</li>
+          <li class="na">تمارين تفاعلية كاملة</li>
+        </ul>
+        <button class="pbtn">ابدأ مجاناً</button>
+      </div>
+      <div class="pcard featured reveal">
+        <div class="pcard-badge">⭐ الأكثر شعبية</div>
+        <div class="pcard-name">🚀 بريميوم</div>
+        <div class="pcard-price">15 <span>DT</span></div>
+        <div class="pcard-cycle">شهرياً</div>
+        <ul class="pcard-feats">
+          <li>كل 6 اللغات كاملة</li>
+          <li>جميع الدروس بدون حد</li>
+          <li>ملخصات PDF كاملة</li>
+          <li>تمارين تفاعلية كاملة</li>
+          <li>شهادة إتمام رسمية</li>
+          <li>دعم مباشر</li>
+          <li>بدون إعلانات</li>
+        </ul>
+        <button class="pbtn primary">اشترك الآن</button>
+      </div>
+      <div class="pcard reveal">
+        <div class="pcard-name">💎 سنوي</div>
+        <div class="pcard-price">99 <span>DT</span></div>
+        <div class="pcard-cycle">سنوياً — تربح شهرين!</div>
+        <ul class="pcard-feats">
+          <li>كل مميزات البريميوم</li>
+          <li>توفير 81 دينار</li>
+          <li>أولوية الدعم</li>
+          <li>وصول مبكر لمحتوى جديد</li>
+          <li>شهادات لكل اللغات</li>
+          <li>جلسة تقييم مجانية</li>
+          <li>بدون إعلانات</li>
+        </ul>
+        <button class="pbtn">اشترك سنوياً</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="tstis">
+  <div class="si">
+    <div class="sh reveal">
+      <div class="stag">💬 آراء الطلاب</div>
+      <h2 class="stitle">قالوا عن فاهم</h2>
+    </div>
+    <div class="tsti-grid">
+      <div class="tc reveal">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">بدأت الفرنسية من الصفر وبعد 3 أشهر عندي B1. الشروحات بالدارجة غيّرت كل شيء، فهمت أكثر من أي كتاب.</p>
+        <div class="tc-author">
+          <div class="tc-av" style="background:#eff6ff">👨‍🎓</div>
+          <div><div class="tc-name">أحمد الكريمي</div><div class="tc-info">طالب جامعي — تونس العاصمة</div></div>
+        </div>
+      </div>
+      <div class="tc reveal">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">كنت نحتاج الإيطالية للشغل. في 4 أشهر مع فاهم، اجتزت مقابلة بالإيطالية ونجحت! المنصة غيّرت حياتي.</p>
+        <div class="tc-author">
+          <div class="tc-av" style="background:#fffbeb">👩‍💼</div>
+          <div><div class="tc-name">مريم بن علي</div><div class="tc-info">موظفة — صفاقس</div></div>
+        </div>
+      </div>
+      <div class="tc reveal">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">أحسن منصة تعليمية تونسية شفتها. الإنجليزية تحسنت بشكل كبير. الأسعار معقولة ومناسبة للطلاب.</p>
+        <div class="tc-author">
+          <div class="tc-av" style="background:#f0fdf4">👨</div>
+          <div><div class="tc-name">يوسف الشابي</div><div class="tc-info">طالب ثانوي — سوسة</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-sec-inner reveal">
+    <h2>مستعد تبدأ تتكلم لغة جديدة؟ 🚀</h2>
+    <p>انضم لآلاف الطلاب التونسيين على فاهم — التسجيل مجاني ولا تحتاج بطاقة بنكية</p>
+    <a href="#" class="cta-primary" style="display:inline-flex">ابدأ تعلّم مجاناً الآن 🎉</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div>
+        <a href="#" class="logo" style="margin-bottom:4px;display:inline-flex">
+          <div class="logo-icon">
+            <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="46" height="46" rx="13" fill="url(#logoGrad2)"/>
+              <defs><linearGradient id="logoGrad2" x1="0" y1="0" x2="46" y2="46"><stop offset="0%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#818cf8"/></linearGradient></defs>
+              <text x="23" y="31" font-family="Cairo,Arial" font-size="22" font-weight="900" fill="white" text-anchor="middle">ف</text>
+              <circle cx="33" cy="13" r="4" fill="#f59e0b"/>
+            </svg>
+          </div>
+          <div class="logo-text-wrap">
+            <div class="logo-name-ar" style="background:white;-webkit-background-clip:text;-webkit-text-fill-color:white">فاهم</div>
+            <div class="logo-name-en">Fahem Languages</div>
+          </div>
+        </a>
+        <p class="ft-desc">منصة تعليم اللغات التونسية — شروحات بالدارجة لست لغات عالمية.</p>
+        <div class="ft-social">
+          <a href="#" class="fsoc" title="Facebook">📘</a>
+          <a href="#" class="fsoc" title="Instagram">📸</a>
+          <a href="#" class="fsoc" title="TikTok">🎵</a>
+          <a href="#" class="fsoc" title="YouTube">▶️</a>
+        </div>
+        <div class="ft-langs-row">
+          <span class="ft-lang-tag">🇸🇦 عربية</span>
+          <span class="ft-lang-tag">🇫🇷 Français</span>
+          <span class="ft-lang-tag">🇬🇧 English</span>
+          <span class="ft-lang-tag">🇮🇹 Italiano</span>
+          <span class="ft-lang-tag">🇪🇸 Español</span>
+          <span class="ft-lang-tag">🇩🇪 Deutsch</span>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>اللغات</h4>
+        <a href="#">🇸🇦 اللغة العربية</a>
+        <a href="#">🇫🇷 Français</a>
+        <a href="#">🇬🇧 English</a>
+        <a href="#">🇮🇹 Italiano</a>
+        <a href="#">🇪🇸 Español</a>
+        <a href="#">🇩🇪 Deutsch</a>
+      </div>
+      <div class="ft-col">
+        <h4>المنصة</h4>
+        <a href="#">من نحن</a>
+        <a href="#">كيف تعمل؟</a>
+        <a href="#">الأسعار</a>
+        <a href="#">المدونة</a>
+        <a href="#">الشهادات</a>
+      </div>
+      <div class="ft-col">
+        <h4>تواصل معنا</h4>
+        <a href="#">contact@fahem.tn</a>
+        <a href="#">أسئلة شائعة</a>
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">شروط الاستخدام</a>
+        <a href="#">الدعم الفني</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© 2025 فاهم Fahem.tn — جميع الحقوق محفوظة 🇹🇳</span>
+      <span>صُنع بـ ❤️ في تونس</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.boxShadow = window.scrollY>20 ? '0 4px 30px rgba(0,0,0,.08)' : 'none';
+});
+
+// Mobile menu
+function toggleMenu(){
+  const m=document.getElementById('mob');
+  const h=document.getElementById('ham');
+  const open=m.classList.toggle('open');
+  const s=h.querySelectorAll('span');
+  s[0].style.transform=open?'rotate(45deg) translate(5px,5px)':'';
+  s[1].style.opacity=open?'0':'';
+  s[2].style.transform=open?'rotate(-45deg) translate(5px,-5px)':'';
+}
+
+// Close on outside click
+document.addEventListener('click',e=>{
+  const m=document.getElementById('mob'),h=document.getElementById('ham');
+  if(m.classList.contains('open')&&!m.contains(e.target)&&!h.contains(e.target)) toggleMenu();
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+  });
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay=(i%4)*0.08+'s';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
