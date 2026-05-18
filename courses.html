@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>فاهم | الكورسات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#4f46e5;--primary2:#6366f1;--primary3:#818cf8;
+  --primary-light:#eef2ff;--primary-dark:#3730a3;
+  --accent:#f59e0b;--accent-light:#fffbeb;
+  --success:#16a34a;--success-light:#f0fdf4;
+  --danger:#dc2626;--danger-light:#fef2f2;
+  --locked:#9ca3af;--locked-light:#f3f4f6;
+  --text:#1e1b4b;--text2:#4b5563;--text3:#9ca3af;
+  --bg:#f8f9ff;--bg2:#ffffff;--border:#e5e7eb;
+  --border2:rgba(79,70,229,.2);
+  --shadow:0 2px 12px rgba(0,0,0,.06);
+  --shadow-md:0 6px 28px rgba(79,70,229,.12);
+  --font:'Cairo',sans-serif;--font-en:'Poppins',sans-serif;
+  --r:12px;--r-lg:18px;--r-xl:24px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden;min-height:100vh}
+
+/* NAV */
+nav{background:white;border-bottom:1px solid var(--border);padding:0 5%;position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:38px;height:38px;flex-shrink:0}
+.logo-icon svg{width:38px;height:38px}
+.logo-ar{font-size:19px;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--primary3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo-en{font-size:10px;color:var(--text3);font-family:var(--font-en);letter-spacing:.1em}
+.nav-right{display:flex;align-items:center;gap:10px}
+.back-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r);border:1.5px solid var(--border);background:white;color:var(--text2);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .18s}
+.back-btn:hover{border-color:var(--primary);color:var(--primary)}
+.profile-btn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary3));display:flex;align-items:center;justify-content:center;color:white;font-size:16px;cursor:pointer;border:none;flex-shrink:0}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:300px 1fr;max-width:1300px;margin:0 auto;padding:28px 5% 60px;gap:28px;min-height:calc(100vh - 64px)}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:88px;align-self:start;display:flex;flex-direction:column;gap:14px}
+.user-card{background:white;border-radius:var(--r-lg);border:1.5px solid var(--border);padding:22px;text-align:center}
+.user-av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary3));display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 12px;box-shadow:0 4px 16px rgba(79,70,229,.25)}
+.user-name{font-size:16px;font-weight:800;color:var(--text);margin-bottom:2px}
+.user-level{font-size:12px;color:var(--text3);font-family:var(--font-en);margin-bottom:16px}
+.xp-bar-wrap{background:var(--bg);border-radius:10px;height:8px;overflow:hidden;margin-bottom:6px}
+.xp-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--primary),var(--primary3));transition:width .6s ease}
+.xp-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);font-family:var(--font-en)}
+
+.sb-card{background:white;border-radius:var(--r-lg);border:1.5px solid var(--border);overflow:hidden}
+.sb-card-title{padding:14px 18px;font-size:13px;font-weight:800;color:var(--text);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+
+.lang-list{padding:8px}
+.lang-btn{
+  display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:var(--r);
+  cursor:pointer;transition:all .18s;border:none;background:none;width:100%;
+  font-family:var(--font);text-align:right;
+}
+.lang-btn:hover{background:var(--bg)}
+.lang-btn.active{background:var(--primary-light)}
+.lb-flag{font-size:22px;flex-shrink:0}
+.lb-info{flex:1;text-align:right}
+.lb-name{font-size:13.5px;font-weight:700;color:var(--text)}
+.lb-prog{font-size:11px;color:var(--text3);font-family:var(--font-en)}
+.lb-bar{height:4px;background:var(--border);border-radius:4px;margin-top:5px;overflow:hidden}
+.lb-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--primary),var(--primary3));transition:width .5s}
+.lb-lock{font-size:13px;color:var(--locked);flex-shrink:0}
+
+/* MAIN */
+.main{}
+.page-header{margin-bottom:24px}
+.page-title{font-size:24px;font-weight:900;color:var(--text);margin-bottom:4px}
+.page-sub{font-size:14px;color:var(--text2)}
+
+/* LANG HEADER */
+.lang-header{
+  background:white;border-radius:var(--r-lg);border:1.5px solid var(--border);
+  padding:24px 28px;margin-bottom:24px;
+  display:flex;align-items:center;gap:20px;
+}
+.lh-flag{font-size:56px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15))}
+.lh-info{flex:1}
+.lh-name{font-size:22px;font-weight:900;color:var(--text);margin-bottom:2px}
+.lh-sub{font-size:13px;color:var(--text2);margin-bottom:12px}
+.lh-stats{display:flex;gap:20px}
+.lh-stat{text-align:center}
+.lh-stat-num{font-size:20px;font-weight:900;color:var(--primary)}
+.lh-stat-lbl{font-size:11px;color:var(--text3)}
+.lh-overall{flex-shrink:0;text-align:center}
+.circle-prog{position:relative;width:80px;height:80px}
+.circle-prog svg{transform:rotate(-90deg)}
+.circle-bg{fill:none;stroke:var(--border);stroke-width:8}
+.circle-fill{fill:none;stroke:url(#progGrad);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .8s ease}
+.circle-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:var(--primary);font-family:var(--font-en)}
+
+/* LEVELS */
+.levels{display:flex;flex-direction:column;gap:16px}
+
+.level-section{background:white;border-radius:var(--r-lg);border:2px solid var(--border);overflow:hidden;transition:all .2s}
+.level-section.completed{border-color:rgba(22,163,74,.3)}
+.level-section.active-level{border-color:var(--border2);box-shadow:var(--shadow-md)}
+.level-section.locked{opacity:.75}
+
+.level-header{
+  display:flex;align-items:center;gap:16px;padding:18px 22px;cursor:pointer;
+  transition:background .18s;user-select:none;
+}
+.level-header:hover{background:var(--bg)}
+
+.level-badge{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex-shrink:0;font-family:var(--font-en);
+}
+.lb-code{font-size:14px;font-weight:800;line-height:1}
+.lb-icon{font-size:16px;margin-top:2px}
+
+/* level colors */
+.lvl-a1 .level-badge{background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1d4ed8}
+.lvl-a2 .level-badge{background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d}
+.lvl-b1 .level-badge{background:linear-gradient(135deg,#fef3c7,#fde68a);color:#b45309}
+.lvl-b2 .level-badge{background:linear-gradient(135deg,#fce7f3,#fbcfe8);color:#9d174d}
+.lvl-c1 .level-badge{background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#5b21b6}
+.lvl-c2 .level-badge{background:linear-gradient(135deg,#fef9c3,#fef08a);color:#854d0e}
+.locked .level-badge{background:var(--locked-light);color:var(--locked)}
+
+.level-info{flex:1}
+.level-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:2px;display:flex;align-items:center;gap:8px}
+.level-desc{font-size:13px;color:var(--text2)}
+.level-status{display:flex;align-items:center;gap:8px;margin-top:8px}
+.prog-bar{flex:1;height:6px;background:var(--border);border-radius:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:6px;transition:width .6s ease}
+.lvl-a1 .prog-fill{background:linear-gradient(90deg,#3b82f6,#1d4ed8)}
+.lvl-a2 .prog-fill{background:linear-gradient(90deg,#22c55e,#15803d)}
+.lvl-b1 .prog-fill{background:linear-gradient(90deg,#f59e0b,#b45309)}
+.lvl-b2 .prog-fill{background:linear-gradient(90deg,#ec4899,#9d174d)}
+.lvl-c1 .prog-fill{background:linear-gradient(90deg,#8b5cf6,#5b21b6)}
+.lvl-c2 .prog-fill{background:linear-gradient(90deg,#eab308,#854d0e)}
+.locked .prog-fill{background:var(--locked)}
+.prog-pct{font-size:12px;font-weight:700;font-family:var(--font-en);flex-shrink:0}
+
+.level-right{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.lock-icon{font-size:22px}
+.lesson-count{font-size:11px;color:var(--text3);font-family:var(--font-en);text-align:center}
+.chevron{font-size:13px;color:var(--text3);transition:transform .3s}
+.level-section.open .chevron{transform:rotate(180deg)}
+
+/* LESSONS */
+.lessons-wrap{display:none;border-top:1px solid var(--border);padding:16px 22px;background:var(--bg)}
+.level-section.open .lessons-wrap{display:block}
+.locked-msg{display:flex;align-items:center;gap:12px;padding:16px 22px;background:var(--locked-light);color:var(--locked);font-size:14px;font-weight:600;border-top:1px solid var(--border)}
+
+.lessons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.lesson-card{
+  background:white;border-radius:var(--r);border:1.5px solid var(--border);
+  padding:16px;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:12px;
+}
+.lesson-card:hover:not(.lesson-done){border-color:var(--border2);box-shadow:0 4px 16px rgba(79,70,229,.08);transform:translateY(-1px)}
+.lesson-card.lesson-done{border-color:rgba(22,163,74,.3);background:var(--success-light)}
+.lesson-card.lesson-current{border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1)}
+.lc-num{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;font-family:var(--font-en);
+  flex-shrink:0;
+}
+.lesson-done .lc-num{background:var(--success-light);color:var(--success)}
+.lesson-current .lc-num{background:var(--primary-light);color:var(--primary)}
+.lesson-card:not(.lesson-done):not(.lesson-current) .lc-num{background:var(--bg);color:var(--text3)}
+.lc-info{flex:1;overflow:hidden}
+.lc-title{font-size:13.5px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lc-type{font-size:11px;color:var(--text3);margin-top:1px}
+.lc-check{font-size:18px;flex-shrink:0}
+.lesson-done .lc-check::before{content:'✅'}
+.lesson-current .lc-check::before{content:'▶️'}
+.lesson-card:not(.lesson-done):not(.lesson-current) .lc-check::before{content:'⭕'}
+
+/* LESSON VIEWER */
+.lesson-viewer{display:none;position:fixed;inset:0;z-index:300;background:rgba(10,10,30,.7);align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.lesson-viewer.open{display:flex}
+.lv-modal{
+  background:white;border-radius:var(--r-xl);width:680px;max-width:94vw;
+  max-height:90vh;overflow-y:auto;
+  box-shadow:0 24px 80px rgba(0,0,0,.25);
+  animation:popIn .25s cubic-bezier(.22,1,.36,1);
+}
+@keyframes popIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.lv-header{padding:24px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px}
+.lv-icon{width:48px;height:48px;border-radius:14px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.lv-title{font-size:18px;font-weight:900;color:var(--text);flex:1}
+.lv-close{width:36px;height:36px;border-radius:var(--r);border:1.5px solid var(--border);background:white;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.lv-close:hover{background:var(--danger-light);border-color:var(--danger);color:var(--danger)}
+.lv-body{padding:24px 28px}
+.lv-content{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:24px}
+.lv-content h4{font-size:16px;font-weight:800;color:var(--text);margin:16px 0 8px}
+.lv-content .example{background:var(--primary-light);border-right:4px solid var(--primary);padding:12px 16px;border-radius:var(--r);margin:10px 0;font-size:14px}
+.lv-content .example span{display:block;font-size:12px;color:var(--text3);margin-top:3px}
+
+/* QUIZ */
+.quiz-section{margin-top:20px;border-top:1px solid var(--border);padding-top:20px}
+.quiz-title{font-size:15px;font-weight:800;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.quiz-q{font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.qopt{
+  padding:12px 16px;border-radius:var(--r);border:2px solid var(--border);
+  background:white;cursor:pointer;font-family:var(--font);font-size:13.5px;
+  font-weight:600;color:var(--text2);transition:all .18s;text-align:center;
+}
+.qopt:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
+.qopt.correct{border-color:var(--success);background:var(--success-light);color:var(--success)}
+.qopt.wrong{border-color:var(--danger);background:var(--danger-light);color:var(--danger)}
+.quiz-result{display:none;padding:14px 18px;border-radius:var(--r);font-size:14px;font-weight:700;margin-bottom:16px;text-align:center}
+.quiz-result.pass{background:var(--success-light);color:var(--success);border:1.5px solid rgba(22,163,74,.3);display:block}
+.quiz-result.fail{background:var(--danger-light);color:var(--danger);border:1.5px solid rgba(220,38,38,.3);display:block}
+
+.lv-footer{padding:16px 28px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end}
+.btn{padding:11px 24px;border-radius:var(--r);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all .18s;border:none;display:inline-flex;align-items:center;gap:7px}
+.btn-ghost{background:white;border:2px solid var(--border);color:var(--text2)}.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary2));color:white;box-shadow:0 4px 16px rgba(79,70,229,.3)}.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(79,70,229,.38)}
+.btn-success{background:linear-gradient(135deg,var(--success),#15803d);color:white}.btn-success:hover{transform:translateY(-1px)}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--text);color:white;padding:13px 24px;border-radius:var(--r);
+  font-size:14px;font-weight:600;z-index:500;transition:transform .4s cubic-bezier(.22,1,.36,1);
+  display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.25);
+  white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--success)}.toast.error{background:var(--danger)}
+
+/* RESPONSIVE */
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:relative;top:0}}
+@media(max-width:640px){.lang-header{flex-direction:column;text-align:center}.lh-stats{justify-content:center}.quiz-options{grid-template-columns:1fr}.lessons-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="38" height="38" rx="11" fill="url(#g1)"/>
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="38" y2="38"><stop offset="0%" stop-color="#4f46e5"/><stop offset="100%" stop-color="#818cf8"/></linearGradient></defs>
+          <text x="19" y="26" font-family="Cairo,Arial" font-size="18" font-weight="900" fill="white" text-anchor="middle">ف</text>
+          <circle cx="27" cy="10" r="3.5" fill="#f59e0b"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-ar">فاهم</div>
+        <div class="logo-en">Fahem Languages</div>
+      </div>
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="back-btn">← الصفحة الرئيسية</a>
+      <button class="profile-btn">👤</button>
+    </div>
+  </div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="user-card">
+      <div class="user-av">👤</div>
+      <div class="user-name">مرحباً بك!</div>
+      <div class="user-level">Level 3 · 420 XP</div>
+      <div class="xp-bar-wrap"><div class="xp-bar" style="width:68%"></div></div>
+      <div class="xp-label"><span>420 XP</span><span>500 XP</span></div>
+    </div>
+
+    <div class="sb-card">
+      <div class="sb-card-title">🌍 اختر اللغة</div>
+      <div class="lang-list" id="langList"></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="page-header">
+      <h1 class="page-title">الكورسات 📚</h1>
+      <p class="page-sub">أكمل كل مستوى 100% باش تفتح المستوى اللي بعده</p>
+    </div>
+
+    <!-- LANG HEADER -->
+    <div class="lang-header" id="langHeader"></div>
+
+    <!-- LEVELS -->
+    <div class="levels" id="levelsContainer"></div>
+  </main>
+</div>
+
+<!-- LESSON VIEWER -->
+<div class="lesson-viewer" id="lessonViewer">
+  <div class="lv-modal" id="lvModal">
+    <div class="lv-header">
+      <div class="lv-icon" id="lvIcon">📖</div>
+      <div class="lv-title" id="lvTitle"></div>
+      <button class="lv-close" onclick="closeLesson()">✕</button>
+    </div>
+    <div class="lv-body">
+      <div class="lv-content" id="lvContent"></div>
+      <div class="quiz-section" id="quizSection"></div>
+    </div>
+    <div class="lv-footer">
+      <button class="btn btn-ghost" onclick="closeLesson()">إغلاق</button>
+      <button class="btn btn-primary" id="lvCompleteBtn" onclick="completeLesson()">✅ إتمام الدرس</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- SVG DEFS -->
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="progGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<script>
+// ══════════════════════════════════
+// DATA
+// ══════════════════════════════════
+const LANGUAGES = [
+  { id:'ar', name:'اللغة العربية', nameEn:'Arabic', flag:'🇸🇦', color:'#16a34a', free:true },
+  { id:'fr', name:'اللغة الفرنسية', nameEn:'Français', flag:'🇫🇷', color:'#2563eb', free:true },
+  { id:'en', name:'اللغة الإنجليزية', nameEn:'English', flag:'🇬🇧', color:'#dc2626', free:false },
+  { id:'it', name:'اللغة الإيطالية', nameEn:'Italiano', flag:'🇮🇹', color:'#d97706', free:false },
+  { id:'es', name:'اللغة الإسبانية', nameEn:'Español', flag:'🇪🇸', color:'#b45309', free:false },
+  { id:'de', name:'اللغة الألمانية', nameEn:'Deutsch', flag:'🇩🇪', color:'#374151', free:false },
+];
+
+const LEVELS = [
+  { id:'a1', code:'A1', name:'مبتدئ', nameEn:'Beginner', icon:'🌱', desc:'أول خطواتك في اللغة — حروف، أرقام، وتحيات أساسية' },
+  { id:'a2', code:'A2', name:'أساسي', nameEn:'Elementary', icon:'🌿', desc:'جمل بسيطة، تعريف بالنفس، والحياة اليومية' },
+  { id:'b1', code:'B1', name:'متوسط', nameEn:'Intermediate', icon:'🌳', desc:'محادثات، أسفار، وتعبير عن الرأي' },
+  { id:'b2', code:'B2', name:'فوق المتوسط', nameEn:'Upper-Intermediate', icon:'⭐', desc:'نقاشات معقدة، نصوص متنوعة، وكتابة متقدمة' },
+  { id:'c1', code:'C1', name:'متقدم', nameEn:'Advanced', icon:'🏆', desc:'طلاقة تامة، مواضيع أكاديمية ومهنية' },
+  { id:'c2', code:'C2', name:'إتقان', nameEn:'Mastery', icon:'💎', desc:'إتقان كامل على مستوى المتحدث الأصلي' },
+];
+
+const LESSONS_DATA = {
+  a1: [
+    { id:'a1_1', title:'الحروف والأبجدية', type:'درس نظري', icon:'🔤', content: buildContent('a1_1'), quiz: buildQuiz('a1_1') },
+    { id:'a1_2', title:'الأرقام من 0 إلى 20', type:'درس نظري', icon:'🔢', content: buildContent('a1_2'), quiz: buildQuiz('a1_2') },
+    { id:'a1_3', title:'التحيات والمجاملات', type:'محادثة', icon:'👋', content: buildContent('a1_3'), quiz: buildQuiz('a1_3') },
+    { id:'a1_4', title:'التعريف بالنفس', type:'محادثة', icon:'🙋', content: buildContent('a1_4'), quiz: buildQuiz('a1_4') },
+    { id:'a1_5', title:'الألوان الأساسية', type:'مفردات', icon:'🎨', content: buildContent('a1_5'), quiz: buildQuiz('a1_5') },
+    { id:'a1_6', title:'اختبار المستوى A1', type:'اختبار', icon:'📝', content: buildContent('a1_6'), quiz: buildQuiz('a1_6') },
+  ],
+  a2: [
+    { id:'a2_1', title:'الجمل البسيطة', type:'قواعد', icon:'📖', content: buildContent('a2_1'), quiz: buildQuiz('a2_1') },
+    { id:'a2_2', title:'الأفعال الأساسية', type:'قواعد', icon:'⚡', content: buildContent('a2_2'), quiz: buildQuiz('a2_2') },
+    { id:'a2_3', title:'العائلة والأصدقاء', type:'مفردات', icon:'👨‍👩‍👧', content: buildContent('a2_3'), quiz: buildQuiz('a2_3') },
+    { id:'a2_4', title:'الطعام والشراب', type:'مفردات', icon:'🍕', content: buildContent('a2_4'), quiz: buildQuiz('a2_4') },
+    { id:'a2_5', title:'وصف المكان', type:'محادثة', icon:'🏠', content: buildContent('a2_5'), quiz: buildQuiz('a2_5') },
+    { id:'a2_6', title:'التسوق والأسعار', type:'محادثة', icon:'🛒', content: buildContent('a2_6'), quiz: buildQuiz('a2_6') },
+    { id:'a2_7', title:'اختبار المستوى A2', type:'اختبار', icon:'📝', content: buildContent('a2_7'), quiz: buildQuiz('a2_7') },
+  ],
+  b1: [
+    { id:'b1_1', title:'التعبير عن الرأي', type:'محادثة', icon:'💬', content: buildContent('b1_1'), quiz: buildQuiz('b1_1') },
+    { id:'b1_2', title:'الماضي والمستقبل', type:'قواعد', icon:'⏰', content: buildContent('b1_2'), quiz: buildQuiz('b1_2') },
+    { id:'b1_3', title:'الأسفار والسياحة', type:'مفردات', icon:'✈️', content: buildContent('b1_3'), quiz: buildQuiz('b1_3') },
+    { id:'b1_4', title:'المهن والعمل', type:'مفردات', icon:'💼', content: buildContent('b1_4'), quiz: buildQuiz('b1_4') },
+    { id:'b1_5', title:'اختبار المستوى B1', type:'اختبار', icon:'📝', content: buildContent('b1_5'), quiz: buildQuiz('b1_5') },
+  ],
+  b2: [
+    { id:'b2_1', title:'النقاش والحجج', type:'محادثة', icon:'🗣️', content: buildContent('b2_1'), quiz: buildQuiz('b2_1') },
+    { id:'b2_2', title:'الكتابة الأكاديمية', type:'كتابة', icon:'✍️', content: buildContent('b2_2'), quiz: buildQuiz('b2_2') },
+    { id:'b2_3', title:'الإعلام والسياسة', type:'قراءة', icon:'📰', content: buildContent('b2_3'), quiz: buildQuiz('b2_3') },
+    { id:'b2_4', title:'اختبار المستوى B2', type:'اختبار', icon:'📝', content: buildContent('b2_4'), quiz: buildQuiz('b2_4') },
+  ],
+  c1: [
+    { id:'c1_1', title:'الأسلوب الأدبي', type:'أدب', icon:'📚', content: buildContent('c1_1'), quiz: buildQuiz('c1_1') },
+    { id:'c1_2', title:'المصطلحات المهنية', type:'مهني', icon:'🎯', content: buildContent('c1_2'), quiz: buildQuiz('c1_2') },
+    { id:'c1_3', title:'اختبار المستوى C1', type:'اختبار', icon:'📝', content: buildContent('c1_3'), quiz: buildQuiz('c1_3') },
+  ],
+  c2: [
+    { id:'c2_1', title:'الطلاقة التامة', type:'تقدم', icon:'💎', content: buildContent('c2_1'), quiz: buildQuiz('c2_1') },
+    { id:'c2_2', title:'الشهادة النهائية', type:'اختبار', icon:'🏆', content: buildContent('c2_2'), quiz: buildQuiz('c2_2') },
+  ],
+};
+
+function buildContent(id){
+  const map = {
+    'a1_1': `<h4>🔤 الحروف والأبجدية</h4><p>في هذا الدرس سنتعلم الحروف الأساسية للغة وكيفية نطقها بشكل صحيح.</p><div class="example">مثال: A - B - C - D ...<span>نطقها: إي - بي - سي - دي</span></div><p>تمرّن على كتابة كل حرف عدة مرات حتى تحفظه جيداً.</p>`,
+    'a1_2': `<h4>🔢 الأرقام من 0 إلى 20</h4><p>نتعلم الأرقام الأساسية اللي نستعملوها كل يوم.</p><div class="example">0 = Zero / Zéro / صفر<span>1 = One / Un / واحد</span></div>`,
+    'a1_3': `<h4>👋 التحيات والمجاملات</h4><p>أهم الجمل اللي تحتاجها باش تبدأ محادثة.</p><div class="example">Hello! / Bonjour! / مرحبا!<span>طريقة الاستخدام: عند لقاء شخص لأول مرة</span></div>`,
+    'a1_4': `<h4>🙋 التعريف بالنفس</h4><p>كيف تعرّف بنفسك باللغة الجديدة.</p><div class="example">My name is ... / Je m'appelle ...<span>اسمي هو...</span></div>`,
+    'a1_5': `<h4>🎨 الألوان الأساسية</h4><p>تعلم أسماء الألوان في اللغة الجديدة.</p><div class="example">Red / Rouge / أحمر • Blue / Bleu / أزرق<span>استخدامها: This is a red car</span></div>`,
+    'a1_6': `<h4>📝 اختبار المستوى A1</h4><p>أجب على الأسئلة التالية باش تثبت إنك أتقنت المستوى A1 وتفتح المستوى التالي.</p>`,
+  };
+  return map[id] || `<h4>📖 محتوى الدرس</h4><p>هذا الدرس يحتوي على شروحات وأمثلة تفاعلية لمساعدتك على التقدم في تعلم اللغة خطوة بخطوة.</p><div class="example">مثال تطبيقي سيظهر هنا<span>ستجد الشرح بالدارجة التونسية</span></div>`;
+}
+
+function buildQuiz(id){
+  return {
+    question: 'ما هي الترجمة الصحيحة لكلمة "Hello"؟',
+    options: ['مرحباً', 'وداعاً', 'شكراً', 'من فضلك'],
+    correct: 0
+  };
+}
+
+// ══════════════════════════════════
+// STATE
+// ══════════════════════════════════
+let state = JSON.parse(localStorage.getItem('fahem_progress') || '{}');
+let currentLang = 'fr';
+let currentLesson = null;
+let quizAnswered = false;
+let quizPassed = false;
+
+function getProgress(lang, levelId) {
+  return state[lang]?.[levelId] || {};
+}
+
+function isLessonDone(lang, levelId, lessonId) {
+  return !!state[lang]?.[levelId]?.[lessonId];
+}
+
+function getLevelProgress(lang, levelId) {
+  const lessons = LESSONS_DATA[levelId] || [];
+  if (!lessons.length) return 0;
+  const done = lessons.filter(l => isLessonDone(lang, levelId, l.id)).length;
+  return Math.round((done / lessons.length) * 100);
+}
+
+function isLevelComplete(lang, levelId) {
+  return getLevelProgress(lang, levelId) === 100;
+}
+
+function isLevelUnlocked(lang, levelIdx) {
+  if (levelIdx === 0) return true;
+  const prevLevel = LEVELS[levelIdx - 1];
+  return isLevelComplete(lang, prevLevel.id);
+}
+
+function getLangOverallProgress(lang) {
+  const total = LEVELS.reduce((s, l) => s + (LESSONS_DATA[l.id]?.length || 0), 0);
+  const done = LEVELS.reduce((s, l) => {
+    return s + (LESSONS_DATA[l.id]?.filter(ls => isLessonDone(lang, l.id, ls.id)).length || 0);
+  }, 0);
+  return total ? Math.round((done / total) * 100) : 0;
+}
+
+function saveState() {
+  localStorage.setItem('fahem_progress', JSON.stringify(state));
+}
+
+// ══════════════════════════════════
+// RENDER
+// ══════════════════════════════════
+function renderSidebar() {
+  const list = document.getElementById('langList');
+  list.innerHTML = LANGUAGES.map(l => {
+    const pct = getLangOverallProgress(l.id);
+    return `<button class="lang-btn ${l.id === currentLang ? 'active' : ''}" onclick="switchLang('${l.id}')">
+      <span class="lb-flag">${l.flag}</span>
+      <div class="lb-info">
+        <div class="lb-name">${l.name}</div>
+        <div class="lb-prog">${pct}% مكتمل</div>
+        <div class="lb-bar"><div class="lb-fill" style="width:${pct}%;background:${l.color}"></div></div>
+      </div>
+      ${!l.free ? '<span class="lb-lock">🔒</span>' : ''}
+    </button>`;
+  }).join('');
+}
+
+function renderLangHeader() {
+  const l = LANGUAGES.find(x => x.id === currentLang);
+  const pct = getLangOverallProgress(currentLang);
+  const totalLessons = LEVELS.reduce((s,lv)=>s+(LESSONS_DATA[lv.id]?.length||0),0);
+  const doneLessons = LEVELS.reduce((s,lv)=>s+(LESSONS_DATA[lv.id]?.filter(ls=>isLessonDone(currentLang,lv.id,ls.id)).length||0),0);
+  const completedLevels = LEVELS.filter((_,i)=>isLevelComplete(currentLang,LEVELS[i].id)).length;
+
+  const circ = 2 * Math.PI * 34;
+  const offset = circ - (pct / 100) * circ;
+
+  document.getElementById('langHeader').innerHTML = `
+    <div class="lh-flag">${l.flag}</div>
+    <div class="lh-info">
+      <div class="lh-name">${l.name}</div>
+      <div class="lh-sub">${l.nameEn} — ${l.free ? 'مجاني ✓' : 'بريميوم 💎'}</div>
+      <div class="lh-stats">
+        <div class="lh-stat"><div class="lh-stat-num">${doneLessons}/${totalLessons}</div><div class="lh-stat-lbl">درس</div></div>
+        <div class="lh-stat"><div class="lh-stat-num">${completedLevels}/${LEVELS.length}</div><div class="lh-stat-lbl">مستوى</div></div>
+        <div class="lh-stat"><div class="lh-stat-num">${pct}%</div><div class="lh-stat-lbl">مكتمل</div></div>
+      </div>
+    </div>
+    <div class="lh-overall">
+      <div class="circle-prog">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle class="circle-bg" cx="40" cy="40" r="34"/>
+          <circle class="circle-fill" cx="40" cy="40" r="34"
+            stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/>
+        </svg>
+        <div class="circle-text">${pct}%</div>
+      </div>
+    </div>`;
+}
+
+function renderLevels() {
+  const container = document.getElementById('levelsContainer');
+  container.innerHTML = LEVELS.map((lv, idx) => {
+    const unlocked = isLevelUnlocked(currentLang, idx);
+    const pct = getLevelProgress(currentLang, lv.id);
+    const complete = pct === 100;
+    const lessons = LESSONS_DATA[lv.id] || [];
+    const doneCnt = lessons.filter(l => isLessonDone(currentLang, lv.id, l.id)).length;
+
+    let sectionClass = `level-section lvl-${lv.id}`;
+    if (!unlocked) sectionClass += ' locked';
+    else if (complete) sectionClass += ' completed';
+    else sectionClass += ' active-level';
+
+    const statusIcon = !unlocked ? '🔒' : complete ? '✅' : '▶️';
+    const statusLabel = !unlocked ? `أكمل ${LEVELS[idx-1]?.code} 100% أولاً` : complete ? 'مكتمل!' : `${doneCnt}/${lessons.length} درس`;
+
+    return `
+    <div class="${sectionClass}" id="level-${lv.id}">
+      <div class="level-header" onclick="toggleLevel('${lv.id}', ${unlocked})">
+        <div class="level-badge">
+          <div class="lb-code">${lv.code}</div>
+          <div class="lb-icon">${unlocked ? lv.icon : '🔒'}</div>
+        </div>
+        <div class="level-info">
+          <div class="level-title">
+            ${lv.name}
+            ${complete ? '<span style="font-size:13px;background:#dcfce7;color:#16a34a;padding:2px 10px;border-radius:20px;font-weight:700">مكتمل ✓</span>' : ''}
+          </div>
+          <div class="level-desc">${lv.desc}</div>
+          <div class="level-status">
+            <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+            <span class="prog-pct" style="color:${complete?'var(--success)':'var(--text3)'}">${pct}%</span>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="lock-icon">${statusIcon}</div>
+          <div class="lesson-count">${statusLabel}</div>
+          ${unlocked ? `<div class="chevron">▼</div>` : ''}
+        </div>
+      </div>
+      ${unlocked
+        ? `<div class="lessons-wrap">
+            <div class="lessons-grid">
+              ${lessons.map((ls, li) => {
+                const done = isLessonDone(currentLang, lv.id, ls.id);
+                const isCurrent = !done && lessons.slice(0,li).every(l2=>isLessonDone(currentLang,lv.id,l2.id));
+                let cls = 'lesson-card';
+                if(done) cls += ' lesson-done';
+                else if(isCurrent) cls += ' lesson-current';
+                return `<div class="${cls}" onclick="openLesson('${currentLang}','${lv.id}','${ls.id}')">
+                  <div class="lc-num">${li+1}</div>
+                  <div class="lc-info">
+                    <div class="lc-title">${ls.icon} ${ls.title}</div>
+                    <div class="lc-type">${ls.type}</div>
+                  </div>
+                  <div class="lc-check"></div>
+                </div>`;
+              }).join('')}
+            </div>
+           </div>`
+        : `<div class="locked-msg">🔒 أكمل المستوى ${LEVELS[idx-1]?.code} بنسبة 100% باش تفتح هذا المستوى</div>`
+      }
+    </div>`;
+  }).join('');
+}
+
+function renderAll() {
+  renderSidebar();
+  renderLangHeader();
+  renderLevels();
+}
+
+// ══════════════════════════════════
+// INTERACTIONS
+// ══════════════════════════════════
+function switchLang(id) {
+  currentLang = id;
+  renderAll();
+}
+
+function toggleLevel(id, unlocked) {
+  if (!unlocked) { showToast('🔒 أكمل المستوى السابق 100% أولاً!', 'error'); return; }
+  const el = document.getElementById('level-' + id);
+  el.classList.toggle('open');
+}
+
+// LESSON VIEWER
+function openLesson(lang, levelId, lessonId) {
+  const lessons = LESSONS_DATA[levelId];
+  const lesson = lessons.find(l => l.id === lessonId);
+  if (!lesson) return;
+
+  currentLesson = { lang, levelId, lessonId, lesson };
+  quizAnswered = false;
+  quizPassed = false;
+
+  document.getElementById('lvIcon').textContent = lesson.icon;
+  document.getElementById('lvTitle').textContent = lesson.title;
+  document.getElementById('lvContent').innerHTML = lesson.content;
+
+  // Build quiz
+  const q = lesson.quiz;
+  document.getElementById('quizSection').innerHTML = `
+    <div class="quiz-title">🧠 اختبر فهمك</div>
+    <div class="quiz-q">${q.question}</div>
+    <div class="quiz-options">
+      ${q.options.map((o,i)=>`<button class="qopt" onclick="answerQuiz(${i},${q.correct})">${o}</button>`).join('')}
+    </div>
+    <div class="quiz-result" id="qResult"></div>`;
+
+  const done = isLessonDone(lang, levelId, lessonId);
+  document.getElementById('lvCompleteBtn').style.display = done ? 'none' : 'flex';
+  document.getElementById('lessonViewer').classList.add('open');
+}
+
+function answerQuiz(chosen, correct) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  quizPassed = chosen === correct;
+  const opts = document.querySelectorAll('.qopt');
+  opts[correct].classList.add('correct');
+  if (chosen !== correct) opts[chosen].classList.add('wrong');
+  const res = document.getElementById('qResult');
+  if (quizPassed) {
+    res.textContent = '🎉 ممتاز! الجواب صحيح!';
+    res.className = 'quiz-result pass';
+  } else {
+    res.textContent = '❌ جواب خاطئ. راجع الدرس وحاول مرة أخرى.';
+    res.className = 'quiz-result fail';
+  }
+}
+
+function completeLesson() {
+  if (!currentLesson) return;
+  const { lang, levelId, lessonId } = currentLesson;
+
+  if (!state[lang]) state[lang] = {};
+  if (!state[lang][levelId]) state[lang][levelId] = {};
+  state[lang][levelId][lessonId] = true;
+  saveState();
+
+  closeLesson();
+  renderAll();
+
+  const lvPct = getLevelProgress(lang, levelId);
+  if (lvPct === 100) {
+    setTimeout(() => showToast(`🏆 مبروك! أكملت المستوى ${levelId.toUpperCase()} 100%! المستوى التالي مفتوح 🎉`, 'success'), 300);
+  } else {
+    showToast(`✅ درس مكتمل! تقدمك: ${lvPct}%`, 'success');
+  }
+
+  // Auto open level
+  setTimeout(() => {
+    const el = document.getElementById('level-' + levelId);
+    if (el && !el.classList.contains('open')) el.classList.add('open');
+  }, 400);
+}
+
+function closeLesson() {
+  document.getElementById('lessonViewer').classList.remove('open');
+  currentLesson = null;
+}
+
+// TOAST
+function showToast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type;
+  setTimeout(() => t.classList.add('show'), 10);
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// Close viewer on backdrop click
+document.getElementById('lessonViewer').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeLesson();
+});
+
+// ══════════════════════════════════
+// INIT
+// ══════════════════════════════════
+renderAll();
+// Auto open first active level
+setTimeout(() => {
+  const firstActive = document.querySelector('.active-level');
+  if (firstActive) firstActive.classList.add('open');
+}, 100);
+</script>
+</body>
+</html>
